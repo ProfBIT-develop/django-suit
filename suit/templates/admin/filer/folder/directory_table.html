@@ -6,7 +6,7 @@
       <table id="result_list" class="table table-striped table-bordered table-hover table-condensed">
         <thead>
             <tr class="{% cycle 'row1' 'row2' as rowcolors %}">
-                <th{% if is_popup %} style="width: 3em;"{% else %} class="action-checkbox-column"{% endif %}>{% if paginator.count and not select_folder and not is_popup %}<input type="checkbox" id="action-toggle" />{% endif %}</th>
+                <th{% if is_popup %} style="width: 3em;"{% else %} class="action-checkbox-column"{% endif %}>{% if paginator.count and not select_folder and not is_popup %}<input type="checkbox" id="action-toggle" class="hidden" />{% endif %}</th>
                 <!-- THUMB -->
                 <th class="thumbHeader">&nbsp;</th>
                 <!-- FILENAME / FOLDERNAME / DIMENSIONS / OWNER -->
