@@ -45,41 +45,6 @@ def suit_time(parser, token):
 
 
 @register.filter
-def field_contents_foreign_linked(admin_field):
-    """Return the .contents attribute of the admin_field, and if it
-    is a foreign key, wrap it in a link to the admin page for that
-    object.
-
-    Use by replacing '{{ field.contents }}' in an admin template (e.g.
-    fieldset.html) with '{{ field|field_contents_foreign_linked }}'.
-    """
-    fieldname = admin_field.field['field']
-    obj = admin_field.form.instance
-    displayed = str(getattr(obj, fieldname)) if obj.id else ''
-
-    if not hasattr(admin_field.model_admin,
-                   'linked_readonly_fields') or fieldname not in admin_field \
-            .model_admin \
-            .linked_readonly_fields:
-        return displayed
-
-    try:
-        fieldtype, attr, value = lookup_field(fieldname, obj,
-                                              admin_field.model_admin)
-    except ObjectDoesNotExist:
-        fieldtype = None
-
-    if isinstance(fieldtype, ForeignKey):
-        try:
-            url = admin_url(value)
-        except NoReverseMatch:
-            url = None
-        if url:
-            displayed = "<a href='%s'>%s</a>" % (url, displayed)
-    return mark_safe(displayed)
-
-
-@register.filter
 def admin_url(obj):
     info = (obj._meta.app_label, obj._meta.object_name.lower())
     return reverse("admin:%s_%s_change" % info, args=[obj.pk])
