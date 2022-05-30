@@ -514,8 +514,9 @@ h3 {
 }
 .controls {
     /* Special styles for django auth app */
-    #id_groups_from { min-height: 80px }
-    #id_user_permissions_from { min-height: 184px }
+    #id_user_permissions_from, .selector-available select, .selector-chosen select {
+        min-height: 400px;
+    }
 
     /* File upload styles */
     .file-upload {
@@ -539,28 +540,6 @@ h3 {
             }
         }
     }
-}
-/* SELECT2 OVERRIDE */
-.select2-container-multi .select2-choices {
-    .border-radius(4px);
-}
-/* Set close on right size */
-.select2-container-multi .select2-choices .select2-search-choice {
-    padding: 3px 20px 3px 5px !important;
-    line-height: normal;
-}
-.select2-container-multi .select2-search-choice-close {
-    top: 3px;
-    left: auto !important;
-}
-.select2-search-choice .s2-size {
-    float: right;
-}
-.select2-search-choice .s2-size em {
-    font-style: normal;
-    color: grey;
-    font-size: 9px;
-    text-shadow: 0 1px 0 #fff;
 }
 .datetimeshortcuts {
     font-size: 11px;

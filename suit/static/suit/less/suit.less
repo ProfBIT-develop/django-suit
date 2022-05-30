@@ -167,8 +167,8 @@ a.append-icon i {
 /* Column layout */
 @cc-padding: (@padding * 2);
 .suit-columns {
-    display: flex;
-    padding-left: @left-column-width; /* LC fullwidth */
+    padding-left: 0;
+    position: relative;
     .suit-column {
         position: relative;
         float: left;
@@ -183,7 +183,8 @@ a.append-icon i {
 }
 #suit-center {
     padding: @padding; /* CC padding */
-    width: 100%;
+    width: calc(100% - (@left-column-width + @cc-padding)); /* LC fullwidth + CC padding */
+    float: right;
     .popup & {
         width: 94.9%;
         padding-bottom: 0;
@@ -191,8 +192,11 @@ a.append-icon i {
 }
 #suit-left {
     width: @left-column-width; /* LC width */
-    right: (@left-column-width + @cc-padding); /* LC fullwidth + CC padding */
-    margin-left: -100%;
+    right: initial;
+    left: 0;
+    display: block;
+    position: relative;
+    margin-left: 0;
 }
 #suit-right {
     width: 130px; /* RC width */
