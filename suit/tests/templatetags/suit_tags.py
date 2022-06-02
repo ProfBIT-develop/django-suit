@@ -3,7 +3,7 @@ from django.conf import settings
 from django.test import TestCase
 from suit import utils
 from suit.templatetags.suit_tags import suit_conf, suit_date, suit_time, \
-    admin_url, field_contents_foreign_linked, suit_bc, suit_bc_value
+    admin_url, suit_bc, suit_bc_value
 from django.db import models
 from django.contrib import admin
 from django.contrib.admin.helpers import AdminReadonlyField
@@ -70,25 +70,6 @@ class SuitTagsTestCase(TestCase):
         country = Country(pk=1, name='USA')
         assert '/country/1' in admin_url(country)
         pass
-
-    def test_field_contents_foreign_linked(self):
-        country = Country(pk=1, name='France')
-        city = City(pk=1, name='Paris', country=country)
-
-        ma = CityAdmin(City, admin.site)
-
-        # Create form
-        request = None
-        form = ma.get_form(request, city)()
-        form.instance = city
-        ro_field = AdminReadonlyField(form, 'country', True, ma)
-
-        self.assertEqual(country.name,
-                         field_contents_foreign_linked(ro_field))
-
-        # Now it should return as link
-        ro_field.model_admin.linked_readonly_fields = ('country',)
-        assert admin_url(country) in field_contents_foreign_linked(ro_field)
 
     def test_suit_bc(self):
         args = [utils.django_major_version(), 'a']
