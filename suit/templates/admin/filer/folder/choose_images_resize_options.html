@@ -9,13 +9,13 @@
 
 {% block content %}
 {% if perms_lacking %}
-    <div class="alert alert-danger">{% blocktrans %}Your account doesn't have permissions to resize all of the selected images.{% endblocktrans %}</div>
+    <div class="alert alert-danger">{% blocktranslate %}Your account doesn’t have permissions to resize all of the selected images.{% endblocktranslate %}</div>
 {% else %}
 {% if not to_resize %}
-    <div class="alert alert-warning">{% blocktrans %}There are no images available to resize.{% endblocktrans %}</div>
+    <div class="alert alert-warning">{% blocktranslate %}There are no images available to resize.{% endblocktranslate %}</div>
 {% else %}
     <form action="" method="post" class="form-horizontal">{% csrf_token %}
-    <div class="alert alert-info alert-block">{% blocktrans %}The following images will be resized:{% endblocktrans %}
+    <div class="alert alert-info alert-block">{% blocktranslate %}The following images will be resized:{% endblocktranslate %}
     <ul>{{ to_resize|unordered_list }}</ul>
     {% for f in files_queryset %}
     <input type="hidden" name="{{ action_checkbox_name }}" value="file-{{ f.pk }}" />
@@ -26,14 +26,14 @@
     <input type="hidden" name="action" value="resize_images" />
     <input type="hidden" name="post" value="yes" />
     {% if cmsplugin_enabled %}
-    <p>{% blocktrans %}Choose an existing thumbnail option or enter resize parameters:{% endblocktrans %}</p>
+    <p>{% blocktranslate %}Choose an existing thumbnail option or enter resize parameters:{% endblocktranslate %}</p>
     {% else %}
     <br>
-    <p>{% blocktrans %}Choose resize parameters:{% endblocktrans %}</p>
+    <p>{% blocktranslate %}Choose resize parameters:{% endblocktranslate %}</p>
 	{% endif %}
     {{ resize_form.as_p_with_help }}
-    <p>{% blocktrans %}Warning: Images will be resized in-place and originals will be lost. Maybe first make a copy of them to retain the originals.{% endblocktrans %}</p>
-    <p><input type="submit" value="{% trans "Resize" %}" class="btn btn-info" /></p>
+    <p>{% blocktranslate %}Warning: Images will be resized in-place and originals will be lost. Maybe first make a copy of them to retain the originals.{% endblocktranslate %}</p>
+    <p><input type="submit" value="{% translate "Resize" %}" class="btn btn-info" /></p>
     </div>
     </form>
 {% endif %}

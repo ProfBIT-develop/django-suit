@@ -1,11 +1,11 @@
 {% extends "admin/change_list.html" %}
 {% load admin_list i18n cms_admin cms_js_tags %}
-{% block title %}{% trans "List of pages" %}{% endblock %}
+{% block title %}{% translate "List of pages" %}{% endblock %}
 {% block bodyclass %}change-list{% endblock %}
 
 {% if not is_popup %}{% block breadcrumbs %}
   <ul class="breadcrumb">
-    <li><a href="../../">{% trans 'Home' %}</a>
+    <li><a href="../../">{% translate 'Home' %}</a>
       <span class="divider">&raquo;</span></li>
     <li>
     <li><a href="../">{{ app_label|capfirst|escape }}</a>
@@ -66,7 +66,7 @@
 		$("#changelist-filter").toggle();
 	}
 	moveSuccess = function(node){
-		var msg = $({% javascript_string %}<span class="success">{% trans "Successfully moved" %}</span>{% end_javascript_string %});
+		var msg = $({% javascript_string %}<span class="success">{% translate "Successfully moved" %}</span>{% end_javascript_string %});
 		node.append(msg);
         // This should not happen
         if (node.parent().hasClass('publisher_delete_requested'))
@@ -75,7 +75,7 @@
         if (!node.parent().find('.col-draft .publish').length) {
             var page_id = node.parent().parent().attr('id').replace('page_', '');
             node.parent().find('.col-draft').prepend(
-                    '<a href="./'+page_id+'/publish/" class="icon publish" title="{% trans 'Publish' %}"></a>');
+                    '<a href="./'+page_id+'/publish/" class="icon publish" title="{% translate 'Publish' %}"></a>');
         }
 	    msg.fadeOut(3000);
 	}
@@ -84,7 +84,7 @@
             var msg = $({% javascript_string %}<span class="success">{% end_javascript_string %}+message+{% javascript_string %}</span>{% end_javascript_string %});
         }
         else {
-            var msg = $({% javascript_string %}<span class="success">{% trans "An error occured. Please reload the page" %}</span>{% end_javascript_string %});
+            var msg = $({% javascript_string %}<span class="success">{% translate "An error occured. Please reload the page" %}</span>{% end_javascript_string %});
         }
 		node.append(msg);
 	}
@@ -107,10 +107,10 @@
 
     {# Todo: recover link #}
 		{% if has_recover_permission %}
-			<li><a href="recover/" class="recoverlink">{% blocktrans with cl.opts.verbose_name_plural|escape as name %}Recover deleted {{name}}{% endblocktrans %}</a></li>
+			<li><a href="recover/" class="recoverlink">{% blocktranslate with cl.opts.verbose_name_plural|escape as name %}Recover deleted {{name}}{% endblocktranslate %}</a></li>
 		{% endif %}
 		{% if has_add_permission %}
-		<li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
+		<li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% blocktranslate with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktranslate %}</a></li>
 		{% endif %}
 	</ul>
 
@@ -122,7 +122,7 @@
 
 
 {% if cl.has_access_to_multiple_sites %}
-	<div id="site-selector">{% trans "Pages on:" %}
+	<div id="site-selector">{% translate "Pages on:" %}
 		<select id="site-select">{% for site in cl.sites %}
 			<option {% if site.pk == cl.current_site.pk %}selected {% endif %}value="{{ site.pk }}">{{ site.name }}</option>{% endfor %}
 		</select>
@@ -138,7 +138,7 @@
           {% if has_add_permission %}
             <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="btn btn-success">
               <i class="icon-plus-sign icon-white"></i>&nbsp;
-              {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+              {% blocktranslate with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktranslate %}
             </a>
           {% endif %}
         {% endblock %}

@@ -1,15 +1,15 @@
 {% load i18n admin_urls suit_tags %}
 <div class="submit-row clearfix">
-  {% if show_save %}<button type="submit" class="btn btn-high btn-info" name="_save">{% trans 'Save' %}</button>{% endif %}
-  {% if show_save_and_continue %}<button type="submit" name="_continue" class=" btn btn-high">{% trans 'Save and continue editing' %}</button>{% endif %}
-  {% if show_save_as_new %}<button type="submit" name="_saveasnew" class="btn">{% trans 'Save as new' %}</button>{%endif%}
-  {% if show_save_and_add_another %}<button type="submit" name="_addanother" class="btn">{% trans 'Save and add another' %}</button>{% endif %}
+  {% if show_save %}<button type="submit" class="btn btn-high btn-info" name="_save">{% translate 'Save' %}</button>{% endif %}
+  {% if show_save_and_continue %}<button type="submit" name="_continue" class=" btn btn-high">{% translate 'Save and continue editing' %}</button>{% endif %}
+  {% if show_save_as_new %}<button type="submit" name="_saveasnew" class="btn">{% translate 'Save as new' %}</button>{%endif%}
+  {% if show_save_and_add_another %}<button type="submit" name="_addanother" class="btn">{% translate 'Save and add another' %}</button>{% endif %}
 
   {% if show_delete_link %}
     {% if '1.9'|django_version_lt %}
-      <a href="delete/" class="text-error deletelink">{% trans "Delete" %}</a>
+      <a href="delete/" class="text-error deletelink">{% translate "Delete" %}</a>
     {% else %}
-      <a href="{% url opts|admin_urlname:'delete' original.pk|admin_urlquote %}" class="text-error deletelink">{% trans "Delete" %}</a>
+      <a href="{% url opts|admin_urlname:'delete' original.pk|admin_urlquote %}" class="text-error deletelink">{% translate "Delete" %}</a>
     {% endif %}
   {% endif %}
   {% if show_delete_translation %}
@@ -17,9 +17,9 @@
     <br>
     {% endif %}
     {% if '1.9'|django_version_lt %}
-      <a href="delete-translation/?language={{ language }}" class="text-error deletelink delete-translation">{% blocktrans with language_name|lower as language %}Delete {{ language }} translation{% endblocktrans %}</a>
+      <a href="delete-translation/?language={{ language }}" class="text-error deletelink delete-translation">{% blocktranslate with language_name|lower as language %}Delete {{ language }} translation{% endblocktranslate %}</a>
     {% else %}
-      <a href="{% url opts|admin_urlname:'delete' original.pk|admin_urlquote %}-translation/?language={{ language }}" class="text-error deletelink delete-translation">{% blocktrans with language_name|lower as language %}Delete {{ language }} translation{% endblocktrans %}</a>
+      <a href="{% url opts|admin_urlname:'delete' original.pk|admin_urlquote %}-translation/?language={{ language }}" class="text-error deletelink delete-translation">{% blocktranslate with language_name|lower as language %}Delete {{ language }} translation{% endblocktranslate %}</a>
     {% endif %}
   {% endif %}
 

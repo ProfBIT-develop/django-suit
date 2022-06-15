@@ -5,7 +5,7 @@
 
 {% block breadcrumbs %}
 <ul class="breadcrumb">
-    <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    <li><a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
         <span class="divider">&raquo;</span></li>
     <li><a href="{% url 'admin:app_list' app_label %}">{{ app_label|capfirst|escape }}</a>
         <span class="divider">&raquo;</span></li>
@@ -13,9 +13,9 @@
         <span class="divider">&raquo;</span></li>
     <li><a href="{% url opts|admin_urlname:'change' object_id %}">{{original|truncatewords:"18"}}</a>
         <span class="divider">&raquo;</span></li>
-    <li><a href="{% url opts|admin_urlname:'history' object_id %}">{% trans "History" %}</a>
+    <li><a href="{% url opts|admin_urlname:'history' object_id %}">{% translate "History" %}</a>
         <span class="divider">&raquo;</span></li>
-    <li class="active">{% blocktrans with opts.verbose_name as verbose_name %}Revert {{verbose_name}}{% endblocktrans %}</li>
+    <li class="active">{% blocktranslate with opts.verbose_name as verbose_name %}Revert {{verbose_name}}{% endblocktranslate %}</li>
 </ul>
 {% endblock %}
 
@@ -24,7 +24,7 @@
 
 
 {% block form_top %}
-<div class="alert alert-info">{% blocktrans %}Press the save button below to revert to this version of the object.{% endblocktrans %}</div>
+<div class="alert alert-info">{% blocktranslate %}Press the save button below to revert to this version of the object.{% endblocktranslate %}</div>
 {% endblock %}
 
 

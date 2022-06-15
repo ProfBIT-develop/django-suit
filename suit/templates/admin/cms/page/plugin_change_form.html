@@ -79,10 +79,10 @@
  
 {% block breadcrumbs %}{% if not is_popup %}
 <div class="breadcrumbs">
-     <a href="../../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="../../../">{% translate "Home" %}</a> &rsaquo;
      <a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
      {% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} &rsaquo;
-     {% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+     {% if add %}{% translate "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
 </div>
 {% endif %}{% endblock %}
  
@@ -96,7 +96,7 @@
 {% if save_on_top %}{% submit_row %}{% endif %}
 {% if errors %}
     <p class="errornote">
-    {% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+    {% blocktranslate count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}
     </p>
     <ul class="errorlist">{% for error in adminform.form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
 {% endif %}
@@ -125,8 +125,8 @@
  
 </div>
 <span class="plugin-submit-row"{% if is_popup %} style="overflow: auto;"{% endif %}>
-	<input type="submit" style="float:none;" name="_save" class="btn btn-info" value="{% trans "Save" %}" />
-	<input type="submit" style="margin-left: 8px;" value="{% trans "Cancel" %}" name="_cancel" class="btn cancel-btn">
+	<input type="submit" style="float:none;" name="_save" class="btn btn-info" value="{% translate "Save" %}" />
+	<input type="submit" style="margin-left: 8px;" value="{% translate "Cancel" %}" name="_cancel" class="btn cancel-btn">
 </span>
 </form>
 

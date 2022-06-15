@@ -1,13 +1,13 @@
 {% extends "admin/change_form.html" %}
 {% load i18n %}
 {% block content %}
-    <h2 class="content-title">{% trans "Add new" %} {% trans "folder" %}</h2>
+    <h2 class="content-title">{% translate "Add new" %} {% translate "folder" %}</h2>
     <div id="content-main">
         <form id="folder_form" method="post" action="" enctype="multipart/form-data" class="form-horizontal">
             {% csrf_token %}
             {% if new_folder_form.errors %}
                 <div class="alert alert-error">
-                    {% blocktrans count new_folder_form.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                    {% blocktranslate count new_folder_form.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}
                 </div>
                 {{ new_folder_form.non_field_errors }}
             {% endif %}
@@ -40,7 +40,7 @@
 
                 <div class="submit-row submit-row-bottom">
                     <input type="submit" name="_save" class="d
-                    efault btn btn-info" value="{% trans "Save" %}"/>
+                    efault btn btn-info" value="{% translate "Save" %}"/>
                 </div>
 
                 <script type="text/javascript">document.getElementById("id_name").focus();</script>
