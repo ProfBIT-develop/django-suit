@@ -2,14 +2,14 @@
 {% load url from suit_compat %}
 {% load i18n admin_urls import_export_tags %}
 
-{% block breadcrumbs_last %}{% trans "Export" %}{% endblock %}
+{% block breadcrumbs_last %}{% translate "Export" %}{% endblock %}
 
 {% block content %}
     <form action="" method="POST" class="form-horizontal">
         {% csrf_token %}
         {% include 'suit/form_as_fieldset.html' %}
         <div class="submit-row submit-row-bottom">
-            <input type="submit" value="{% trans "Export" %}" class="btn btn-info"/>
+            <input type="submit" value="{% translate "Export" %}" class="btn btn-info"/>
         </div>
     </form>
 {% endblock %}

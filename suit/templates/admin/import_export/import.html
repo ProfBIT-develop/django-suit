@@ -3,7 +3,7 @@
 {% load i18n admin_urls import_export_tags %}
 
 {% block breadcrumbs_last %}
-    {% trans "Import" %}
+    {% translate "Import" %}
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
 
 
             <div class="alert alert-info">
-                {% trans "This importer will import the following fields: " %}
+                {% translate "This importer will import the following fields: " %}
                 {% for f in fields %}
                     <code>{{ f }}</code>
                 {% endfor %}
@@ -22,7 +22,7 @@
 
             {% include 'suit/form_as_fieldset.html' %}
             <div class="submit-row submit-row-bottom">
-                <input type="submit" value="{% trans "Import" %}" class="btn btn-info"/>
+                <input type="submit" value="{% translate "Import" %}" class="btn btn-info"/>
             </div>
 
         </form>
@@ -31,7 +31,7 @@
     {% if result %}
         {% if result.has_errors %}
             <div class="alert alert-error alert-block">
-                <h4>{% trans "Errors" %}</h4>
+                <h4>{% translate "Errors" %}</h4>
                 <ul>
                     {% for error in result.base_errors %}
                         <li>{{ error.error }}</li>
@@ -39,7 +39,7 @@
                     {% for line, errors in result.row_errors %}
                         {% for error in errors %}
                             <li>
-                                {% trans "Line number" %}: {{ line }} - {{ error.error }}
+                                {% translate "Line number" %}: {{ line }} - {{ error.error }}
                                 <pre class="traceback">{{ error.traceback|linebreaks }}</pre>
                             </li>
                         {% endfor %}
@@ -48,7 +48,7 @@
             </div>
         {% else %}
 
-            <h2>{% trans "Preview" %}</h2>
+            <h2>{% translate "Preview" %}</h2>
             <table class="table table-bordered table-hover table-condensed table-striped">
                 <thead>
                 <tr>
@@ -62,13 +62,13 @@
                     <tr>
                         <td>
                             {% if row.import_type == 'new' %}
-                                {% trans "New" %}
+                                {% translate "New" %}
                             {% elif row.import_type == 'skip' %}
-                                {% trans "Skipped" %}
+                                {% translate "Skipped" %}
                             {% elif row.import_type == 'delete' %}
-                                {% trans "Delete" %}
+                                {% translate "Delete" %}
                             {% elif row.import_type == 'update' %}
-                                {% trans "Update" %}
+                                {% translate "Update" %}
                             {% endif %}
                         </td>
                         {% for field in row.diff %}
@@ -87,7 +87,7 @@
         <form action="{% url opts|admin_urlname:"process_import" %}" method="POST">
             {% csrf_token %}
             {{ confirm_form.as_p }}
-            <input class="btn btn-success" name="confirm" type="submit" value="{% trans "Confirm import" %}">
+            <input class="btn btn-success" name="confirm" type="submit" value="{% translate "Confirm import" %}">
         </form>
     {% endif %}
 {% endblock %}

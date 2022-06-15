@@ -9,13 +9,13 @@
 
 {% block content %}
 {% if perms_lacking %}
-    <div class="alert alert-danger">{% blocktrans %}Your account doesn't have permissions to rename all of the selected files.{% endblocktrans %}</div>
+    <div class="alert alert-danger">{% blocktranslate %}Your account doesn’t have permissions to rename all of the selected files.{% endblocktranslate %}</div>
 {% else %}
 {% if not to_rename %}
-    <div class="alert alert-info">{% blocktrans %}There are no files available to rename.{% endblocktrans %}</div>
+    <div class="alert alert-info">{% blocktranslate %}There are no files available to rename.{% endblocktranslate %}</div>
 {% else %}
     <form action="" method="post">{% csrf_token %}
-    <div class="alert alert-block alert-info">{% blocktrans %}The following files will be renamed (they will stay in their folders and keep original filename, only displayed filename will be changed):{% endblocktrans %}
+    <div class="alert alert-block alert-info">{% blocktranslate %}The following files will be renamed (they will stay in their folders and keep original filename, only displayed filename will be changed):{% endblocktranslate %}
     <ul>{{ to_rename|unordered_list }}</ul>
     {% for f in files_queryset %}
     <input type="hidden" name="{{ action_checkbox_name }}" value="file-{{ f.pk }}" />
@@ -28,7 +28,7 @@
     <br>
     {{ rename_form.as_p_with_help }}
 
-    <p><input type="submit" value="{% trans "Rename" %}" class="btn btn-info" /></p>
+    <p><input type="submit" value="{% translate "Rename" %}" class="btn btn-info" /></p>
     </div>
     </form>
     <div class="help box">

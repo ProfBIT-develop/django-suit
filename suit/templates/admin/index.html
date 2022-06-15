@@ -16,14 +16,14 @@
     {% if app_list %}
       {% for app in app_list %}
         <div class="module">
-          <table class="table-overview applist" summary="{% blocktrans with name=app.name %}Models available in the {{ name }} application.{% endblocktrans %}">
-            <caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>
+          <table class="table-overview applist" summary="{% blocktranslate with name=app.name %}Models available in the {{ name }} application.{% endblocktranslate %}">
+            <caption><a href="{{ app.app_url }}" class="section">{% translate app.name %}</a></caption>
             {% for model in app.models %}
               <tr>
                 <th scope="row">{{ model.name }}</th>
                 {% if model.admin_url %}
                   <td>
-                    <a href="{{ model.admin_url }}" class="changelink icon">{% trans 'Change' %}</a>
+                    <a href="{{ model.admin_url }}" class="changelink icon">{% translate 'Change' %}</a>
                   </td>
                 {% else %}
                   <td>&nbsp;</td>
@@ -31,7 +31,7 @@
 
                 {% if model.add_url %}
                   <td><a href="{{ model.add_url }}" class="addlink icon"><i
-                          class="icon-plus-sign icon-alpha75"></i>{% trans 'Add' %}
+                          class="icon-plus-sign icon-alpha75"></i>{% translate 'Add' %}
                   </a></td>
                 {% else %}
                   <td>&nbsp;</td>
@@ -42,7 +42,7 @@
         </div>
       {% endfor %}
     {% else %}
-      <p>{% trans "You don't have permission to edit anything." %}</p>
+      <p>{% translate "You don’t have permission to edit anything." %}</p>
     {% endif %}
   </div>
 {% endblock %}
@@ -51,12 +51,12 @@
 {% block sidebar %}
   <div id="content-related">
     <div class="module" id="recent-actions-module">
-      <h4 class="italic-title">{% trans 'My Actions' %}</h4>
+      <h4 class="italic-title">{% translate 'My Actions' %}</h4>
 
       {% load log %}
       {% get_admin_log 10 as admin_log for_user user %}
       {% if not admin_log %}
-        <p>{% trans 'None available' %}</p>
+        <p>{% translate 'None available' %}</p>
       {% else %}
         <ul class="actionlist">
           {% for entry in admin_log %}
@@ -65,15 +65,15 @@
               <i class="{% if entry.is_addition %}icon-plus{% endif %}{% if entry.is_change %}icon-pencil{% endif %}{% if entry.is_deletion %}icon-trash{% endif %} icon-alpha5"></i>
 
               {% spaceless %}
-                {% if entry.is_addition %}{% trans 'added'|capfirst %}{% endif %}
-                {% if entry.is_change %}{% trans 'changed'|capfirst %}{% endif %}
-                {% if entry.is_deletion %}{% trans 'deleted'|capfirst %}{% endif %}
+                {% if entry.is_addition %}{% translate 'added'|capfirst %}{% endif %}
+                {% if entry.is_change %}{% translate 'changed'|capfirst %}{% endif %}
+                {% if entry.is_deletion %}{% translate 'deleted'|capfirst %}{% endif %}
 
                 {% if entry.content_type %}
                   <span class="mini quiet">{% filter capfirst %}
-                    {% trans entry.content_type.name %}{% endfilter %}</span>
+                    {% translate entry.content_type.name %}{% endfilter %}</span>
                 {% else %}
-                  <span class="mini quiet">{% trans 'Unknown content' %}</span>
+                  <span class="mini quiet">{% translate 'Unknown content' %}</span>
                 {% endif %}
               {% endspaceless %}&nbsp;
 

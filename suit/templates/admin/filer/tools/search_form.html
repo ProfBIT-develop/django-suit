@@ -8,16 +8,16 @@
                 <input type="hidden" name="_popup" value="1" />
                 {% if select_folder %}<input type="hidden" name="select_folder" value="1" />{% endif %}
             {% endif %}
-            <input type="text" size="40" name="q" value="{{ search_string }}" id="searchbar" title="{% trans "Enter your search phrase here" %}" />&nbsp;
-            <input type="submit" value="{% trans 'Search' %}" title="{% trans "Click here to" %} {% trans "run search for entered phrase" %}" class="btn btn-info" />
+            <input type="text" size="40" name="q" value="{{ search_string }}" id="searchbar" title="{% translate "Enter your search phrase here" %}" />&nbsp;
+            <input type="submit" value="{% translate 'Search' %}" title="{% translate "Click here to" %} {% translate "run search for entered phrase" %}" class="btn btn-info" />
             &nbsp;
 
-            <label for="limit_search_to_folder" class="checkbox"><input type="checkbox" id="limit_search_to_folder" name="limit_search_to_folder" {% if limit_search_to_folder %}checked="checked"{% endif %} title="{% trans "Check it to" %} {% trans "limit the search to current folder" %}"/>{% trans "limit the search to current folder"|capfirst %}</label>
+            <label for="limit_search_to_folder" class="checkbox"><input type="checkbox" id="limit_search_to_folder" name="limit_search_to_folder" {% if limit_search_to_folder %}checked="checked"{% endif %} title="{% translate "Check it to" %} {% translate "limit the search to current folder" %}"/>{% translate "limit the search to current folder"|capfirst %}</label>
 
 
             {% if show_result_count %}
-            <span class="small quiet"><!--({% trans "found" %} {% blocktrans count folder_children|length as counter %}1 folder{% plural %}{{ counter }} folders{% endblocktrans %} {% trans "and" %}
-            {% blocktrans count folder_files|length as counter %}1 file{% plural %}{{ counter }} files{% endblocktrans %}) --> &nbsp;<a href="?{% if is_popup %}_popup=1{% if select_folder %}&select_folder=1{% endif %}{% endif %}">{% trans "cancel search"|capfirst %}</a></span>
+            <span class="small quiet"><!--({% translate "found" %} {% blocktranslate count folder_children|length as counter %}1 folder{% plural %}{{ counter }} folders{% endblocktranslate %} {% translate "and" %}
+            {% blocktranslate count folder_files|length as counter %}1 file{% plural %}{{ counter }} files{% endblocktranslate %}) --> &nbsp;<a href="?{% if is_popup %}_popup=1{% if select_folder %}&select_folder=1{% endif %}{% endif %}">{% translate "cancel search"|capfirst %}</a></span>
 
             {% endif %}
         </div>

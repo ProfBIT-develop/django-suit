@@ -1,7 +1,7 @@
 {% extends "admin/change_form.html" %}
 {% load i18n admin_modify cms_tags cms_admin %}
 {% load url from suit_compat %}
-{% block title %}{% trans "Change a page" %}{% endblock %}
+{% block title %}{% translate "Change a page" %}{% endblock %}
 
 {% block extrahead %}
 {{ block.super }}
@@ -43,14 +43,14 @@
 
 {% block breadcrumbs %}{% if not is_popup %}
 <div class="breadcrumb">
-  <li><a href="../../../">{% trans "Home" %}</a>
+  <li><a href="../../../">{% translate "Home" %}</a>
        <span class="divider">&raquo;</span></li>
 
   <li><a href="../../">{{ app_label|capfirst|escape }}</a>
     <span class="divider">&raquo;</span></li>
     <li>{% if can_change %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
       <span class="divider">&raquo;</span></li>
-     <li class="active">{% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original.get_title|truncatewords:"18" }}{% endif %}</li>
+     <li class="active">{% if add %}{% translate "Add" %} {{ opts.verbose_name }}{% else %}{{ original.get_title|truncatewords:"18" }}{% endif %}</li>
 </div>
 {% endif %}{% endblock %}
 
@@ -61,11 +61,11 @@
       <div class="pull-right">
         <input type="hidden" name="post" value="yes">
 
-        {% if delete_requested %}<a href="confirm-delete/" class="btn btn-danger">{% trans "Confirm delete" %}</a>{% endif %}
-        {% if delete_requested %}<a href="remove-delete-state/" class="btn btn-info">{% trans "Remove delete request" %}</a>{% endif %}
+        {% if delete_requested %}<a href="confirm-delete/" class="btn btn-danger">{% translate "Confirm delete" %}</a>{% endif %}
+        {% if delete_requested %}<a href="remove-delete-state/" class="btn btn-info">{% translate "Remove delete request" %}</a>{% endif %}
 
       </div>
-      <h4 class="alert-heading">{% trans "Confirm page deletion" %}!</h4>
+      <h4 class="alert-heading">{% translate "Confirm page deletion" %}!</h4>
     </div>
 	{% endif %}
 
@@ -90,24 +90,24 @@
 
     {% block object-tools %}
     {% if change %}{% if not is_popup %}
-      <h4 class="italic-title">{% trans 'actions'|capfirst %}</h4>
+      <h4 class="italic-title">{% translate 'actions'|capfirst %}</h4>
       {% if can_publish or can_change and page.published and page.is_dirty %}
       <ul class="box menu-box">
       {% if can_publish %}
-      <li>{% if not delete_requested %}<a href="publish/" class="publishlink"><i class="{% if page.published and page.is_dirty %}icon-ok-sign{% else %}icon-ok{% endif %} icon-alpha75"></i>{% trans "Publish" %} {% trans "draft" %}</a>{% endif %}</li>
-      <li><a href="preview/?language={{ language }}" class="previewdraftlink"><i class="icon-eye-open icon-alpha75"></i>{% trans "Preview" %} {% trans "draft" %}</a></li>
+      <li>{% if not delete_requested %}<a href="publish/" class="publishlink"><i class="{% if page.published and page.is_dirty %}icon-ok-sign{% else %}icon-ok{% endif %} icon-alpha75"></i>{% translate "Publish" %} {% translate "draft" %}</a>{% endif %}</li>
+      <li><a href="preview/?language={{ language }}" class="previewdraftlink"><i class="icon-eye-open icon-alpha75"></i>{% translate "Preview" %} {% translate "draft" %}</a></li>
       {% endif %}
-      {% if can_change and page.published and page.is_dirty %}<li><a href="revert/" class="revertlink"><i class="icon-repeat icon-alpha75"></i>{% trans "Revert to public" %}</a></li>{% endif %}
+      {% if can_change and page.published and page.is_dirty %}<li><a href="revert/" class="revertlink"><i class="icon-repeat icon-alpha75"></i>{% translate "Revert to public" %}</a></li>{% endif %}
       </ul>
       {% endif %}
       <ul class="box menu-box">
-        {% if page.publisher_public %}<li><a href="preview/?public=1&language={{ language }}"><i class="icon-globe icon-alpha75"></i>{% trans "View on site" %}</a></li>{% endif%}
-      <li><a href="history/" class="historylink"><i class="icon-time icon-alpha75"></i>{% trans "History" %}</a></li>
+        {% if page.publisher_public %}<li><a href="preview/?public=1&language={{ language }}"><i class="icon-globe icon-alpha75"></i>{% translate "View on site" %}</a></li>{% endif%}
+      <li><a href="history/" class="historylink"><i class="icon-time icon-alpha75"></i>{% translate "History" %}</a></li>
         {% if has_add_permission %}
           <li>
-            <a href="../add/"><i class="icon-plus-sign icon-alpha75"></i>{% blocktrans with opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+            <a href="../add/"><i class="icon-plus-sign icon-alpha75"></i>{% blocktranslate with opts.verbose_name as name %}Add {{ name }}{% endblocktranslate %}
             </a></li>
-          {# {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a>#}
+          {# {% blocktranslate with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktranslate %}</a>#}
         {% endif %}
       </ul>
     {% endif %}{% endif %}
@@ -134,7 +134,7 @@
     {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
     {% if errors %}
         <p class="errornote">
-        {% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+        {% blocktranslate count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}
         </p>
         <ul class="errorlist">{% for error in adminform.form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
     {% endif %}
@@ -154,8 +154,8 @@
         <div class="inline-group">
           <div class="tabular inline-related">
             <fieldset id="inherited_permissions" class="module aligned collapse">
-              <h2>{% trans 'All permissions' %}</h2>
-              <div class="loading">{% trans 'Loading...' %}</div>
+              <h2>{% translate 'All permissions' %}</h2>
+              <div class="loading">{% translate 'Loading...' %}</div>
               <div class="load">./permissions/</div>
             </fieldset>
           </div>
@@ -165,8 +165,8 @@
         <div class="inline-group">
             <div class="tabular inline-related">
                 <fieldset id="page_states" class="module aligned collapse">
-                  <h2 class="load_remote">{% trans 'Page states' %}</h2>
-                  <div class="loading">{% trans 'Loading...' %}</div>
+                  <h2 class="load_remote">{% translate 'Page states' %}</h2>
+                  <div class="loading">{% translate 'Loading...' %}</div>
                   <div class="load">./moderation-states/</div>
                 </fieldset>
             </div>
