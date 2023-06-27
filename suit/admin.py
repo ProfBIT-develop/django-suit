@@ -53,11 +53,11 @@ class SortableTabularInlineBase(SortableModelAdminBase):
         if self.fields and self.sortable not in self.fields:
             self.fields = list(self.fields) + [self.sortable]
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == self.sortable:
             kwargs['widget'] = SortableListForm.Meta.widgets['order']
         return super(SortableTabularInlineBase, self).formfield_for_dbfield(
-            db_field, **kwargs)
+            db_field, request, **kwargs)
 
 
 class SortableTabularInline(SortableTabularInlineBase, admin.TabularInline):
@@ -113,14 +113,14 @@ class SortableStackedInlineBase(SortableModelAdminBase):
 
         return fieldsets
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == self.sortable:
             kwargs['widget'] = copy.deepcopy(
                 SortableListForm.Meta.widgets['order'])
             kwargs['widget'].attrs['class'] += ' suit-sortable-stacked'
             kwargs['widget'].attrs['rowclass'] = ' suit-sortable-stacked-row'
         return super(SortableStackedInlineBase, self).formfield_for_dbfield(
-            db_field, **kwargs)
+            db_field, request, **kwargs)
 
 
 class SortableStackedInline(SortableStackedInlineBase, admin.StackedInline):
