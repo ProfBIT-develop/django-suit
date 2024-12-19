@@ -97,6 +97,9 @@ def django_version_gte(string):
 def str_to_version(string):
     return tuple([int(s) for s in string.split('.')])
 
+@register.simple_tag
+def let(value):
+    return value
 
 if django_version < (1, 9):
     # Add empty tags to avoid Django template errors if < Django 1.9
@@ -112,12 +115,3 @@ if django_version < (1, 5):
     @register.filter
     def admin_urlquote(value):
         return quote(value)
-
-if django_version >= (5, 1):
-    @register.filter
-    def length_is(value, arg):
-        """Return a boolean of whether the value's length is the argument."""
-        try:
-            return len(value) == int(arg)
-        except (ValueError, TypeError):
-            return ''
