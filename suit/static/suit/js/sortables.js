@@ -46,12 +46,12 @@
             } else {
                 $('.selected').removeClass('selected');
                 if ($arrow.data('dir') === 'down') {
-                    $next = $row.next();
+                    $next = $row.next(':not(:has(.suit-sortable-disabled))');
                     if ($next.is(':visible') && $next.length) {
                         $row.insertAfter($next).addClass('selected')
                     }
                 } else {
-                    $prev = $row.prev();
+                    $prev = $row.prev(':not(:has(.suit-sortable-disabled))');
                     if ($prev.is(':visible') && $prev.length) {
                         $row.insertBefore($prev).addClass('selected')
                     }
@@ -62,7 +62,7 @@
         function on_arrow_click(e) {
             var $sortable = $(this);
             var $row = $sortable.closest(
-                $sortable.hasClass('sortable-stacked') ? 'div.inline-related' : 'tr'
+                $sortable.hasClass('sortable-stacked') ? 'div.inline-related' : 'tr:not(:has(.suit-sortable-disabled))'
             );
             perform_move($sortable, $row);
             e.preventDefault();
