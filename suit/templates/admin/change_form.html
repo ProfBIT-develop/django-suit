@@ -13,6 +13,9 @@
 
 {% block extrajs %}
   {{ block.super }}
+  {% if '5.1'|django_version_gte %}
+    <script src="{% static 'suit/js/collapse.js' %}"></script>
+  {% endif %}
 
   {% if 'CONFIRM_UNSAVED_CHANGES'|suit_conf %}
     <!-- Warn on leaving unsaved form -->
